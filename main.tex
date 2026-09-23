@@ -1,0 +1,1433 @@
+% !TeX program = xelatex
+\documentclass[lang=en,a4paper,11pt]{elegantpaper}
+
+% Bilingual support: English journal layout with Chinese text and labels.
+\usepackage{xeCJK}
+\IfFontExistsTF{Noto Serif CJK SC}{\setCJKmainfont{Noto Serif CJK SC}}{\setCJKmainfont{FandolSong}}
+\IfFontExistsTF{Noto Sans CJK SC}{\setCJKsansfont{Noto Sans CJK SC}}{\setCJKsansfont{FandolHei}}
+\IfFontExistsTF{Noto Sans Mono CJK SC}{\setCJKmonofont{Noto Sans Mono CJK SC}}{\setCJKmonofont{FandolHei}}
+
+\usepackage{microtype}
+\usepackage{tcolorbox}
+\tcbuselibrary{most}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{pifont}
+\usepackage{amssymb,amsmath}
+\usepackage{url}
+
+\definecolor{JournalBlue}{HTML}{173A5E}
+\definecolor{JournalGold}{HTML}{A47C32}
+\definecolor{JournalGreen}{HTML}{3D6658}
+\definecolor{JournalRed}{HTML}{8C3B3B}
+\definecolor{JournalLight}{HTML}{EAF0F6}
+\definecolor{JournalPaper}{HTML}{F7F8FA}
+\hypersetup{pdftitle={Human Advanced Craft Civilization Database},pdfauthor={ShiJie Wang},colorlinks=true,linkcolor=JournalBlue,urlcolor=JournalRed,citecolor=JournalGold}
+\newcommand{\craft}[1]{\textbf{#1}}
+\newcommand{\sep}{\,\textcolor{JournalGold}{\ding{118}}\,}
+
+\newtcolorbox{manifesto}[1][]{enhanced,breakable,colback=JournalLight,colframe=JournalBlue,boxrule=.5pt,arc=0mm,left=4mm,right=4mm,top=3mm,bottom=3mm,title=#1,fonttitle=\bfseries\sffamily,coltitle=JournalBlue}
+\newtcolorbox{catalogbox}[1]{enhanced,breakable,colback=white,colframe=JournalGold,boxrule=.45pt,arc=0mm,left=4mm,right=4mm,top=2.5mm,bottom=2.5mm,title=#1,fonttitle=\bfseries\sffamily,coltitle=JournalBlue}
+\newtcolorbox{legalbox}[1]{enhanced,breakable,colback=JournalPaper,colframe=JournalRed,boxrule=.5pt,arc=0mm,left=4mm,right=4mm,top=3mm,bottom=3mm,title=#1,fonttitle=\bfseries\sffamily,coltitle=JournalRed}
+\newtcolorbox{designbox}[1]{enhanced,breakable,colback=white,colframe=JournalGreen,boxrule=.5pt,arc=0mm,left=4mm,right=4mm,top=3mm,bottom=3mm,title=#1,fonttitle=\bfseries\sffamily,coltitle=JournalGreen}
+
+\title{Human Advanced Craft Civilization Database}
+\author{ShiJie Wang}
+\institute{A bilingual taxonomy of materials, craft, ritual, living heritage and modern design}
+\version{1.2}
+\date{September 2026}
+\addbibresource{references.bib}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper proposes a searchable and extensible database for comparing exceptional objects across civilizations. Materials, techniques, objects, spaces, rituals and living heritage are treated as parallel dimensions. The database separates historical records, contemporary translation, and legal or ecological constraints, allowing the same framework to describe a jewel, a manuscript, a garden tree, a palace interior, or a collectible card.
+\keywords{craft civilization, material culture, design history, heritage, living art, provenance, sustainable materials}
+\end{abstract}
+
+\begin{center}\small\textbf{中文摘要}\end{center}
+\begin{quote}\small
+本研究提出一套用于比较世界各文明高级造物的可检索数据库结构，将材料、工艺、器物、空间、仪式和活体艺术作为并列维度，并区分历史档案、现代转译以及法律与生态边界。
+\end{quote}
+
+\tableofcontents
+\vspace{1em}
+
+\clearpage
+
+\section{价值模型：何谓“珍贵”}
+建立数据库之前，先把“贵”拆开。只有这样，罗汉松、珐琅戒指、波斯地毯、古书、烟火与机械钟表才能进入同一套坐标系。
+
+\subsection{九维价值模型}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item \craft{材料价值}：贵金属、宝石、玉石、名贵木材、特殊玻璃、稀有矿物、天然纹理材料。
+\item \craft{自然唯一性}：瘿木、俏色玉、欧泊、陨铁魏德曼花纹、奇石、贝母结构色、天然晶簇。
+\item \craft{工时价值}：缂丝、雕漆、金银花丝、微镶、蕾丝、细密画、手工装帧、庭木长期剪定。
+\item \craft{知识价值}：配方、火候、材料相容性、复杂结构、传统制式、音乐声学、钟表机械。
+\item \craft{时间价值}：古树、盆景、熟成材料、反复髹漆、长期养护、器物自然包浆。
+\item \craft{失败率}：高温珐琅、玻璃吹制、复杂陶瓷烧成、微型机械、硬石薄壁雕刻。
+\item \craft{文化谱系}：礼制、宗教、宫廷、工坊、家族、地域、师承、历史用途。
+\item \craft{来源与可验证性}：工坊记录、作者、年代、原料来源、修复史、收藏史、证书。
+\item \craft{当代设计完成度}：人体工学、耐久、安全、模块化、数字鉴真、现代审美与可维护性。
+\end{itemize}
+\end{multicols}
+
+\begin{catalogbox}{三个核心概念}
+\textbf{Heirloom｜传世器}：设计之初就假设它要被使用、修复和继承数十年至百年。\\
+\textbf{Living Heirloom｜活的传世器}：古树、盆景、庭木、藤架、历史栽培品种等，传承的不只是物质，也包括生命与遗传谱系。\\
+\textbf{Ephemeral Masterwork｜瞬时杰作}：烟火、灯会、花艺、冰雕、沙画等，以不可重复的瞬间作为稀缺性。
+\end{catalogbox}
+
+\section{材料总库}
+材料不是“越稀有越高级”，而是要与工艺、用途、来源和法律一起评价。
+
+\subsection{天然宝石、玉石与观赏矿物}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 和田玉、翡翠、独山玉、岫玉、蛇纹石玉、石英岩玉、青玉、白玉、碧玉、墨玉。
+\item 钻石、红宝石、蓝宝石、帕帕拉恰、祖母绿、猫眼金绿宝石、亚历山大变石。
+\item 尖晶石、碧玺、Paraíba 型碧玺、石榴石、翠榴石、沙弗莱、锰铝榴石。
+\item 欧泊、黑欧泊、火欧泊、巨砾欧泊；月光石、拉长石、太阳石。
+\item 海蓝宝石、摩根石、绿柱石、红色绿柱石、托帕石、帝王托帕、锆石。
+\item 玛瑙、缟玛瑙、玉髓、碧玉、虎眼石、鹰眼石、孔雀石、青金石、绿松石。
+\item 水晶、发晶、金红石包裹体水晶、紫水晶、黄水晶、烟晶、蔷薇石英。
+\item 舒俱来石、查罗石、天河石、黑曜石、火山玻璃；收藏级萤石、辉锑矿、自然金、自然银、自然铜、黄铁矿晶簇。
+\end{itemize}
+\end{multicols}
+
+\subsection{珍珠、贝母与结构色材料}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 天然珍珠、养殖珍珠、海水珍珠、淡水珍珠；珍珠母、鲍贝、夜光螺等合法贝壳材料。
+\item 贝母可用于螺钿、表盘、纽扣、首饰、刀具装饰历史复原、书封、家具、卡牌嵌件。
+\item 现代结构色：二向色玻璃、干涉薄膜、光栅膜、全息箔、光子晶体、阳极氧化钛、微纳米纹理表面。
+\end{itemize}
+\end{multicols}
+
+\subsection{金属与合金}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 金、银、铂、钯、铑；铜、青铜、黄铜、白铜、锡。
+\item 铁、碳钢、不锈钢、工具钢、粉末钢；花纹钢、大马士革纹钢、历史乌兹钢研究。
+\item 钛、钽、铌、锆合金、铝、镁；钛与铌的阳极氧化色。
+\item 金箔、银箔、铜箔、包金、鎏金、鋄金、镀金、汞齐鎏金历史工艺研究、现代电镀与 PVD。
+\item 陨铁、石铁陨石、橄榄陨铁及其天然纹理；来源应可验证。
+\end{itemize}
+\end{multicols}
+
+\subsection{木、竹、藤与天然纹理材料}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 黄花梨、紫檀、红木体系、乌木、黑檀、鸡翅木、楠木、黄杨、榉、榆、樟。
+\item 胡桃木、橡木、山毛榉、枫木、樱桃木、梨木、橄榄木、雪松、柏木。
+\item 瘿木、树瘤、鸟眼枫、虎纹枫、火焰枫、水波纹、卷曲纹、提琴背纹等“天然图案材料”。
+\item 竹、湘妃竹、棕竹、斑竹、竹簧、竹丝；藤、柳、棕、草、麦秆等编织材料。
+\item 沉香木与檀香木属于高度敏感的物种与贸易领域，必须按物种、来源和所在地法规核查。
+\end{itemize}
+\end{multicols}
+
+\subsection{纺织、皮革与软性材料}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 蚕丝、绫罗绸缎、纱、绢、绡、锦；棉、亚麻、苎麻、羊毛、羊绒、驼毛、马尾。
+\item 植鞣牛革、马缰革、小牛皮、山羊皮、鹿皮、马臀皮；异宠皮革应核查 CITES 和本地法规。
+\item 金线、银线、金属包线、绒、羽毛替代材料、珠绣珠材、玻璃珠。
+\item 高级现代纤维：芳纶、超高分子量聚乙烯、碳纤维织物、金属纤维、光纤织物，可用于现代高定和装置艺术。
+\end{itemize}
+\end{multicols}
+
+\subsection{漆、胶、纸、颜料与染料}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 生漆、大漆、透明漆、朱漆、黑漆、金漆；天然漆工艺的灰胎、麻布、瓦灰、鹿角霜等体系。
+\item 宣纸、皮纸、竹纸、棉纸、楮纸、雁皮纸、三桠纸、和纸、羊皮纸、犊皮纸、纸莎草。
+\item 洒金纸、洒银纸、泥金纸、泥银纸、蜡笺、粉笺、砑花笺、磁青纸、云母笺。
+\item 石青、石绿、朱砂、赭石、群青、孔雀石颜料、云母粉、金粉、银粉。部分传统矿物颜料含毒性元素，现代制作须使用安全替代。
+\item 靛蓝、茜草、苏木、红花、栀子、槐花、五倍子、紫草、胭脂虫红等传统染料。
+\end{itemize}
+\end{multicols}
+
+\subsection{玻璃、陶瓷、石材与工程材料}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 铅水晶、光学水晶、熔融石英、穆拉诺玻璃、千花玻璃、金星玻璃、套料玻璃、二向色玻璃。
+\item 瓷、炻器、陶、紫砂、骨瓷、珐琅彩体系、建筑釉砖。
+\item 汉白玉、大理石、斑岩、雪花石膏、洞石、花岗岩、砂岩、板岩。
+\item 寿山石、青田石、昌化石、巴林石、田黄、鸡血石；端石、歙石、洮河石、澄泥砚。
+\item 现代：氧化锆陶瓷、蓝宝石玻璃、实验室钻石/红蓝宝石、合成欧泊、碳纤维、锻造碳、陶瓷基复合材料、树脂矿物复合材料。
+\end{itemize}
+\end{multicols}
+
+\subsection{历史珍贵生物材料档案}
+
+
+\begin{legalbox}{仅作历史与博物馆研究}
+象牙、犀牛角、玳瑁、盔犀鸟头胄、鲸须、独角鲸牙、部分海象牙、野生珊瑚、翠羽、部分珍稀羽毛和受监管异宠皮革，在不同国家和国际贸易体系中可能受到严格限制或禁止。数据库应记录其历史用途、工艺价值与替代方案，但现代产品化不得以“古法复兴”为理由绕过保护法规。
+\end{legalbox}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 象牙历史用途：雕像、圣物匣、双联/三联板、棋子、扇骨、梳、镜背、刀柄、印章、微雕、Netsuke 等。
+\item 犀角历史用途：杯、雕器、刀柄、手杖部件、印章类器物、宫廷陈设；现代应使用角质仿生复合材料等替代。
+\item 玳瑁历史用途：梳、扇骨、首饰、眼镜框、家具镶嵌、Boulle 工艺；现代可用醋酸纤维素、树脂仿玳瑁。
+\item 点翠历史用途：头面、簪钗、冠饰；现代可用染色羽毛、结构色薄膜、珐琅、阳极氧化钛等。
+\item 象牙替代：Tagua 象牙果、牛骨、合法角材、陶瓷、树脂、Casein/Galalith 类材料、工程复合物。
+\end{itemize}
+\end{multicols}
+
+\section{基础工艺技术树}
+
+
+\subsection{成形、雕刻与塑造}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 锻造、铸造、失蜡法、锤揲、旋压、拉丝、冲压、錾刻、追錾、浮雕、圆雕、透雕、镂雕、阴刻、阳刻、薄意、链雕、微雕。
+\item 木雕、石雕、玉雕、骨角雕历史研究、贝雕、琥珀雕、宝石雕、卡梅奥、凹雕宝石、印章雕刻。
+\item 陶塑、灰塑、泥塑、蜡塑、石膏塑、纸塑、纸浆塑、玻璃热塑、灯工玻璃、吹制玻璃。
+\end{itemize}
+\end{multicols}
+
+\subsection{镶嵌、表面与金工}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 花丝、累丝、Filigree、Granulation 粒金、金银错、Koftgari、Damascening、Niello 乌银、Thewa、Bidri。
+\item 爪镶、包镶、轨道镶、密钉镶、微镶、隐密镶、群镶、珠边、铆接、卡槽结构。
+\item 螺钿、百宝嵌、金银平脱、硬石镶嵌、Pietre dure、Micromosaic、Marquetry、Intarsia、Khatam。
+\item 鎏金、贴金、描金、泥金、扫金、金箔压印、镀金、PVD；做旧、氧化、发蓝、烧蓝、阳极氧化。
+\end{itemize}
+\end{multicols}
+
+\subsection{珐琅、釉与玻璃化表面}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 掐丝珐琅、内填珐琅、画珐琅、透明珐琅、錾胎珐琅、锤胎珐琅、空窗珐琅、景泰蓝、七宝烧。
+\item Cloisonné、Champlevé、Basse-taille、Plique-à-jour、Grisaille、En ronde bosse、Guilloché enamel、Paillonné。
+\item 陶瓷釉、结晶釉、窑变、天目、曜变研究、低温与高温彩、金彩、银彩。
+\end{itemize}
+\end{multicols}
+
+\subsection{织、绣、编、结}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 缂丝、缂毛、云锦、宋锦、蜀锦、织金、妆花、Jamdani、Banarasi、Patola、Ikat、Tapestry。
+\item 苏绣、湘绣、蜀绣、粤绣、顾绣、盘金绣、打籽绣、锁绣、Zardozi、Chikankari、Aari、Phulkari、Kantha、Goldwork。
+\item 针绣蕾丝、梭结蕾丝、棒槌蕾丝、Venetian lace、Alençon、Chantilly、Brussels、Reticella、Tatting。
+\item 中国结、组纽 Kumihimo、韩国 Maedeup、Macramé、流苏、Passementerie、Soutache、绦带。
+\item 竹编、藤编、柳编、棕编、草编、麦秆编、竹丝编、金属丝编织。
+\end{itemize}
+\end{multicols}
+
+\subsection{书画、印刷、纸艺与墙面}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 工笔、重彩、细密画、泥金、金碧、壁画 Fresco、Tempera mural、Trompe-l'œil、Quadratura、Grisaille。
+\item 木版、饾版拱花、活字、凸版、凹版、铜版、蚀刻、石版、丝网、Letterpress、Gravure。
+\item 剪纸、刻纸、纸雕、Kirigami、折纸、纸扎、彩扎、纸建筑、手工花。
+\item Mosaic、Glass mosaic、Gold mosaic、Opus sectile、Zellige、Azulejo、Scagliola、Sgraffito、Stucco、Tadelakt。
+\end{itemize}
+\end{multicols}
+
+\subsection{机械、声学、光学与动态工艺}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 钟表轮系、擒纵、陀飞轮、三问、大小自鸣、万年历、天文显示、自动人偶。
+\item 机关盒、秘密盒、Puzzle box、机械写字人、机械鸟、音乐盒、风琴装置、水力机关。
+\item 走马灯、皮影、彩窗、镂空投影、光栅、全息、透镜阵列、Lenticular、结构色。
+\item 风筝与风哨、Aeolian harp 风弦琴、风铃、空竹等“自然驱动的声音器物”。
+\end{itemize}
+\end{multicols}
+
+\section{中国高级造物体系}
+
+
+\subsection{漆器与复合表面}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 大漆、脱胎漆器、夹纻、雕漆/剔红、剔犀、犀皮漆、卵壳漆。
+\item 螺钿：厚螺钿、薄螺钿、软螺钿、硬螺钿、点螺、平磨螺钿、衬色螺钿。
+\item 百宝嵌、金银平脱、戗金、描金、填漆、款彩、罩漆、堆漆。
+\item 器型：漆盒、漆盘、漆屏、漆家具、漆书封、漆皮具、漆刀鞘、现代 3C 外壳。
+\end{itemize}
+\end{multicols}
+
+\subsection{金工、玉石与宫廷珠宝}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 花丝镶嵌、累丝、錾刻、金银错、鎏金、烧蓝、景泰蓝、乌铜走银。
+\item 玉雕：俏色、薄意、镂雕、圆雕、链雕、玉山子、如意、带钩、玉佩、玉牌、玉器皿。
+\item 佩饰：组玉佩、玉珩、玉璜、玉觿、禁步、压襟、香囊、荷包、扇坠、带钩、带銙。
+\item 冠饰：凤冠、簪、钗、步摇、抹额、华胜、戏曲头面；点翠仅作历史研究，现代使用替代工艺。
+\end{itemize}
+\end{multicols}
+
+\subsection{织绣染与服饰}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 云锦：妆花、库锦、库缎、织金、金宝地、大花楼机与挑花结本。
+\item 宋锦、蜀锦、壮锦、黎锦、傣锦、缂丝、盘金绣、四大名绣、顾绣。
+\item 蓝染、蜡染、扎染、夹缬、蓝印花布、植物染。
+\item 霞帔、补服、龙袍、礼服、戏服、盔头、绒花、绢花、通草花、缠花。
+\end{itemize}
+\end{multicols}
+
+\subsection{陶瓷、文房、书籍}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 汝、官、哥、钧、定；青花、斗彩、五彩、粉彩、珐琅彩；建盏、龙泉青瓷、德化白瓷、紫砂。
+\item 砚、墨、笔、纸、印章、印泥、镇纸、笔架、笔洗、水盂、臂搁、墨床、砚屏。
+\item 卷轴、册页、经折装、蝴蝶装、包背装、线装；书画装裱、古籍修复、笺纸、印谱。
+\item 木版水印、饾版拱花、拓片、碑刻、印谱、火漆与现代藏书票系统。
+\end{itemize}
+\end{multicols}
+
+\subsection{家具、建筑与园林}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 明式家具、清式家具、榫卯、攒边打槽、束腰、三弯腿、雕花、髹漆、烫蜡、螺钿、百宝嵌。
+\item 圈椅、官帽椅、罗汉床、架子床、条案、多宝格、顶箱柜、屏风、琴桌。
+\item 斗拱、梁架、举折、举架、翼角、飞檐、藻井、和玺/旋子/苏式彩画、琉璃瓦、瓦当、牌坊、垂花门。
+\item 江南园林、皇家园林、寺庙园林、书院园林；叠山理水、太湖石、灵璧石、漏窗、月洞门、曲桥、廊桥。
+\end{itemize}
+\end{multicols}
+
+\subsection{灯彩、风筝、纸扎与节庆动态艺术}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 宫灯、纱灯、走马灯、龙灯、鱼灯、莲花灯、料丝灯、无骨灯、针刺灯、楼阁灯、鳌山灯。
+\item 风筝：软翅、硬翅、板子、串式、龙串、沙燕、立体风筝；劈竹、矫形、扎架、糊裱、绘饰、风哨。
+\item 纸扎、彩扎、花车、彩楼、彩棚、神轿、花轿、舞龙、舞狮、麒麟、凤凰、大型节庆构筑物。
+\item 烟火、爆竹、架子烟火、地景烟火、火龙、铁花等列入“瞬时艺术/非遗研究”；仅记录文化与设计，不提供火药配方或制造步骤。
+\end{itemize}
+\end{multicols}
+
+\subsection{乐器、香、茶、棋与游艺}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 古琴、古筝、琵琶、二胡、笛箫、笙、编钟、编磬、瑟、箜篌、阮、三弦。
+\item 古琴制作：木胎、灰胎、大漆、麻布、徽位、岳山、龙龈、雁足、轸、琴囊与琴匣。
+\item 沉香、檀香、降真香、乳香、没药、安息香等香材；博山炉、香盒、香筒、香匙、香铲、熏球、熏笼。
+\item 围棋、象棋、双陆、投壶、九连环、鲁班锁、华容道、空竹、陀螺、竹蜻蜓、拨浪鼓。
+\end{itemize}
+\end{multicols}
+
+\subsection{珍稀园艺与活体艺术}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 罗汉松、黑松、赤松、五针松、真柏、黄杨、榆、榉、银杏、梅、紫薇、枫、山茶、桂花、杜鹃、紫藤。
+\item 盆景、盆石、山水盆景、树桩盆景、微型盆景、古桩、庭木、造型树。
+\item 古梅、古桂、古茶树、古银杏等以树龄、根盘、树形、历史来源和长期养护形成“活体传世”。
+\end{itemize}
+\end{multicols}
+
+\section{日本与韩国}
+
+
+\subsection{日本}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 莳绘：平莳绘、高莳绘、研出莳绘；梨地、切金、螺钿、平文、沈金。
+\item 轮岛涂、山中涂、会津涂；干漆、漆艺茶器、印笼、根付、蒔绘文具。
+\item 七宝烧、金工、刀装：镡、缘头、目贯、小柄、笄；覆土烧刃、研磨、柄卷、鲛皮历史/合法替代。
+\item 西阵织、友禅、刺绣、组纽、金襴；和纸、木版浮世绘、金屏风、障子、襖、床之间。
+\item 茶道具、香道具、漆器、陶器、竹花器；枯山水、茶庭、苔庭、数寄屋。
+\item 盆栽、Niwaki 庭木、松柏塑形、苔景、盆石、水石；历史栽培品种保存。
+\end{itemize}
+\end{multicols}
+
+\subsection{韩国}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 螺钿漆器 Najeonchilgi、漆艺、金属胎入丝、银入丝。
+\item 韩纸 Hanji、纸工艺、书画装裱、传统书籍。
+\item 韩服、刺绣、金箔、Maedeup 结饰、Norigae 佩饰。
+\item 青瓷镶嵌、白瓷、粉青沙器；木家具、屏风、礼仪器物。
+\end{itemize}
+\end{multicols}
+
+\section{印度与南亚高级造物体系}
+
+
+\subsection{莫卧儿与宫廷珠宝}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Kundan、Jadau、Meenakari、Polki、Rose-cut diamond、Foiled setting。
+\item Thewa 金箔镂纹玻璃珠宝、Pachchikam、Tarakasi 银丝、Temple jewellery、Navaratna。
+\item Sarpech、Kalgi、Jigha、Nath、Jhumka、Chandbali、Haar、Guluband、Bajuband、Kangan、Kada、Hathphool、Kamarband、Payal、Bichhiya。
+\item 祖母绿雕刻、软玉、水晶、玛瑙、玉髓、红宝石与尖晶石的雕刻、杯、盒、壶、刀柄和宫廷器皿。
+\end{itemize}
+\end{multicols}
+
+\subsection{印度金属、木石与建筑装饰}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Bidriware 黑底银嵌、Koftgari 金银错、Repoussé、Chasing、Dhokra 失蜡铸造、银丝。
+\item Jali 石雕格栅、Parchin kari 硬石镶嵌、Marble inlay、红砂岩雕刻、木雕 Haveli 立面。
+\item Thikri 镜片装饰、Sheesh Mahal 镜厅、灰泥、壁画、彩绘天花。
+\item Walnut wood carving、Sandalwood carving、Bone-inlay/modern substitute furniture、漆木器。
+\end{itemize}
+\end{multicols}
+
+\subsection{印度织物与刺绣}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Banarasi、Kanchipuram、Paithani、Baluchari、Jamdani、Zari、丝锦。
+\item Patola 双重 Ikat、Pochampally、Sambalpuri、其他 Ikat。
+\item Zardozi、Aari、Chikankari、Phulkari、Kantha、Kutch、Shisha 镜绣、Gota patti、Kasuti、Toda、Sozni。
+\item Kalamkari、Ajrakh、Bandhani、Leheriya、Bagru、Sanganeri、Dabu、Rogan painting、Chintz。
+\item 克什米尔：Pashmina、Kani shawl、Jamawar、Sozni、Papier-mâché、胡桃木雕、地毯；Shahtoosh 仅作历史保护材料研究。
+\end{itemize}
+\end{multicols}
+
+\subsection{绘画、手抄本与仪式器物}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Mughal miniature、Rajput、Pahari、Deccani、Company painting。
+\item Tanjore、Mysore、Pattachitra、Madhubani、Phad、Gond、Warli、Kerala mural。
+\item Paan box、槟榔切具、Hookah、Rosewater sprinkler、Attar bottle、Surahi、Writing box、Inkpot、Chess/Pachisi set。
+\item Palanquin 轿、Howdah 象轿、马具、象饰、仪仗扇、宝座、宫廷纺织。
+\end{itemize}
+\end{multicols}
+
+\section{波斯、阿拉伯、奥斯曼与伊斯兰世界}
+
+
+\subsection{伊斯兰书法与书籍艺术}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Kufic、Naskh、Thuluth、Muhaqqaq、Rayhani、Tawqi、Ruq'ah、Maghrebi、Nastaliq、Shikasteh、Diwani、Jali Diwani。
+\item Qur'an manuscript、波斯与奥斯曼手抄本、Tazhib/Tezhip 金饰、细密画、Carpet page、Ebru 水拓、Stamped leather binding、Lacquer binding、Cut-paper calligraphy。
+\item 书法进入建筑、瓷砖、金属、玻璃、织物、地毯、木门、兵器装饰和珠宝。
+\end{itemize}
+\end{multicols}
+
+\subsection{波斯工艺}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Khatamkari：木、骨替代材、黄铜等微型几何镶嵌。
+\item Minakari 珐琅、Qalamzani 金属錾刻、Firuzeh-kubi 绿松石镶嵌。
+\item Ayeneh-kari 镜片拼嵌、Lajvardina、漆纸盒、细密画、书法。
+\item 波斯地毯：Kashan、Isfahan、Tabriz、Heriz、Nain、Qom、Kerman、Shiraz、Bidjar、Sarouk；medallion、garden、hunting、vase、prayer、silk、metal-thread。
+\item Termeh、锦缎、丝织、金属包线织物。
+\end{itemize}
+\end{multicols}
+
+\subsection{阿拉伯世界：金属、木工、香与待客器物}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 黄铜/青铜錾刻、银嵌、金嵌、透雕、铭文金属器；盆、壶、烛台、香炉、灯、笔盒、星盘、经盒。
+\item Mashrabiya、旋木格栅、珍珠母与木/金属丝几何镶嵌、Minbar、Qur'an stand、雕花门、天花。
+\item 沉香 Oud、Bakhoor、乳香、没药、玫瑰香、Attar；Mabkhara 香炉、香水瓶、玫瑰水洒瓶。
+\item Dallah 咖啡壶、Finjan 小杯、托盘、枣盒、待客箱；金属、珐琅、木与珠贝装饰。
+\item 鹰猎器具：Falcon hood、手套、架、袋；马具、鞍具、银饰带具。
+\end{itemize}
+\end{multicols}
+
+\subsection{奥斯曼}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Iznik 陶器与建筑砖、Çini、郁金香/康乃馨纹样。
+\item Tezhip、Ebru、书法、丝绒、锦缎、Kaftan、金线刺绣。
+\item 珍珠母镶嵌木工、Tombak 镀金铜、银器、地毯与 Kilim。
+\item Yataghan 等历史武具的刀装、珊瑚/骨角历史材料与现代替代、金银嵌；研究装饰而非武器制作。
+\end{itemize}
+\end{multicols}
+
+\subsection{马格里布与安达卢西亚}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Zellige 几何瓷砖、Tadelakt 抛光石灰、Zouak 彩绘木、雪松雕刻、Stucco carving、Muqarnas。
+\item 摩洛哥穿孔黄铜灯、皮革、银饰、珐琅、地毯、刺绣、雕门与喷泉。
+\item 安达卢西亚：马蹄拱、多叶拱、几何砖、Arabesque 灰泥、Artesonado 木天花、书法、水渠、庭院与喷泉。
+\end{itemize}
+\end{multicols}
+
+\section{古埃及、两河、希腊罗马与拜占庭}
+
+
+\subsection{古埃及与努比亚}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 黄金首饰、宽领、护符、圣甲虫、珐琅/釉质模拟色彩、绿松石、青金石、红玉髓。
+\item Faience 彩釉陶、Egyptian blue、雪花石膏/方解石器皿、石制化妆器、眼影调色板。
+\item 镶嵌木家具、金箔、彩绘棺椁、木雕、石雕、壁画、浮雕。
+\item 香膏瓶、化妆盒、镜、梳、珠串、仪式权杖、神像与神庙装饰。
+\end{itemize}
+\end{multicols}
+
+\subsection{美索不达米亚、亚述、巴比伦、腓尼基}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 青金石、金、银、红玉髓的王室首饰与镶嵌。
+\item 圆筒印章、凹雕、石器、金属器、象牙历史雕板。
+\item 彩釉砖、浮雕墙面、石雕宫殿板、金属礼器。
+\item 腓尼基玻璃、染色与奢侈品贸易；Tyrian purple 作为历史色彩文化研究，不鼓励复制破坏性采集。
+\end{itemize}
+\end{multicols}
+
+\subsection{古希腊、伊特鲁里亚与罗马}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 希腊与伊特鲁里亚金工：粒金 Granulation、Filigree、Repoussé、宝石与玻璃嵌件。
+\item Roman cameo/intaglio、Opus interassile 镂空金工、金币吊饰、印戒。
+\item Mosaic glass、Gold-band glass、Cameo glass、吹制玻璃、切割玻璃、银器、岩晶器。
+\item Porphyry、Sardonyx、Agate、Jasper、Rock crystal 等硬石；马赛克、Opus sectile、壁画。
+\item 别墅、花园、喷泉、青铜器、银餐具、香水与化妆容器。
+\end{itemize}
+\end{multicols}
+
+\subsection{拜占庭}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Cloisonné enamel、黄金、宝石、珍珠、银鎏金。
+\item 圣像框、福音书宝装、十字架、圣物匣、礼仪器、马赛克与金底壁面。
+\item 丝织、金线织物、宫廷服饰、象牙历史浮雕与现代替代研究。
+\end{itemize}
+\end{multicols}
+
+\section{欧洲中世纪至近现代高级造物}
+
+
+\subsection{珠宝总系：戒指、胸针、冠冕与套装}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 戒指：Signet、Intaglio、Cameo、Posy、Fede、Gimmel、Mourning、Memorial、Memento mori、Bishop's ring、Cocktail、Cluster、Toi et Moi、Halo、Eternity、Gypsy-set、Navette。
+\item 胸针：Fibula、Cameo brooch、Micromosaic brooch、Pietra dura brooch、Enamel brooch、Trembler/en tremblant、Convertible brooch、Brooch-pendant、Brooch-watch、Dress clip、Fur clip、Jabot pin。
+\item 头饰：Tiara、Diadem、Coronet、Crown、Bandeau、Aigrette、Hat jewel、Hair comb。
+\item 项饰：Rivière、Sautoir、Choker、Pendant、Locket；Parure 与 Demi-parure 成套珠宝。
+\item 男士与随身：Cufflinks、Stick pin、Tie pin、Fob、Watch chain、Seal、Chatelaine。
+\end{itemize}
+\end{multicols}
+
+\subsection{欧洲珐琅与硬石}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Limoges painted enamel、Grisaille、Cloisonné、Champlevé、Basse-taille、Plique-à-jour、En ronde bosse、Guilloché enamel。
+\item Pietre dure、Florentine mosaic、Micromosaic、Roman mosaic、Cosmatesque、Scagliola、Opus sectile。
+\item Cameo、Intaglio、Hardstone carving、Rock crystal carving。
+\end{itemize}
+\end{multicols}
+
+\subsection{意大利}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Murano、Millefiori、Aventurine glass、Cameo glass、Lampwork、吹制与切割玻璃。
+\item Florentine pietre dure、Micromosaic、Scagliola、Intarsia、Marquetry。
+\item 卡梅奥、凹雕宝石、金工粒金、珊瑚历史雕刻与合法替代。
+\item 小提琴制作、鲁特琴、曼陀林；大理石雕塑、马赛克、Fresco、威尼斯面具、Burano lace。
+\item Florentine leather、Marbled paper、精装书、建筑灰泥与彩绘。
+\end{itemize}
+\end{multicols}
+
+\subsection{法国}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Limoges 珐琅、Sèvres 瓷、Gobelins 与 Aubusson 挂毯。
+\item Boulle marquetry、Ormolu、Boiserie、Gilt wood、宫廷家具与机械书桌。
+\item Haute couture、Tambour embroidery、Goldwork、珠绣、亮片、羽饰、人工花、褶裥、Passementerie。
+\item 高级皮具、箱包、马具、精装书、香水瓶、水晶、珠宝、钟表、扇。
+\end{itemize}
+\end{multicols}
+
+\subsection{英国与爱尔兰}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Sterling silver、金银器、Cut steel jewellery、Mourning jewellery、Hair jewellery。
+\item Signet engraving、Fine watch/clockmaking、Bespoke tailoring、Bespoke shoemaking、Saddlery、旅行箱与皮具。
+\item Fine bookbinding、Gold tooling、Fore-edge painting、Gauffering、Marbled paper。
+\item Bone china、Wedgwood、Cut crystal、银茶具、Writing slope、Tea caddy、Walking stick、Cane handle。
+\item Opus Anglicanum 历史金线刺绣、Honiton lace、爱尔兰蕾丝等。
+\end{itemize}
+\end{multicols}
+
+\subsection{西班牙与葡萄牙}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Toledo damascening、金银错式金属装饰、刀剑历史装饰、宗教银器。
+\item Azulejo、Hispano-Moresque ceramics、几何釉陶。
+\item Guadamecí 镀金压花皮革、Cordovan leather、铁艺、木雕圣像、多彩木雕。
+\item 葡萄牙金丝 Filigree、银器、刺绣、Talha dourada 镀金木雕、软木高级工艺。
+\end{itemize}
+\end{multicols}
+
+\subsection{德语区、中欧、低地国家与北欧}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Augsburg/Nuremberg 金银器与机械工艺、天文钟、Kunstkammer 珍奇柜器物。
+\item Meissen 瓷、Vienna porcelain、Bohemian crystal、玻璃切割与雕刻。
+\item 荷兰 marquetry、Delftware、银器、地图与科学仪器。
+\item Scandinavian silver、木雕、编织、玻璃、现代主义家具与工艺。
+\end{itemize}
+\end{multicols}
+
+\subsection{俄罗斯与东欧}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Guilloché enamel、Cloisonné enamel、Niello、Silver filigree、Hardstone carving。
+\item 孔雀石、青金石、软玉、水晶、碧玉；帝俄宫廷桌面器、印章、烟盒、相框、钟、手杖头。
+\item Fabergé 式综合工艺语言：贵金属 + 硬石 + 玑镂 + 透明珐琅 + 宝石 + 微型机械。
+\item 俄罗斯圣像、Oklad 金属覆饰、木雕、漆盒细密画；东欧琥珀、玻璃与木工。
+\end{itemize}
+\end{multicols}
+
+\subsection{欧洲书籍、宗教圣器与墙面艺术}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Illuminated manuscript、Book of Hours、Gospel book、Psalter、Choir book；Vellum、金箔、群青、微型画、花体首字母。
+\item Leather binding、Morocco leather、Blind tooling、Gold tooling、Mosaic binding、Onlay/Inlay leather、Jewelled binding、Treasure binding。
+\item Reliquary、Monstrance、Chalice、Ciborium、Paten、Processional cross、Censer、Tabernacle、Rosary、Triptych。
+\item Fresco、Stucco、Pastiglia、Sgraffito、Mosaic、Gold mosaic、Stained glass、Rose window、Heraldic glass、Trompe-l'œil、Quadratura。
+\end{itemize}
+\end{multicols}
+
+\section{中亚与丝绸之路}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 粟特金银器、壁画、丝织与商旅器物；萨珊银器与金属器视觉影响。
+\item 中亚地毯、毡、刺绣、Ikat、Suzani、金线织物、马具、刀具装饰。
+\item 绿松石、青金石、红玉髓、玻璃珠、宝石贸易网络；Nishapur 等城市的陶瓷、玻璃、珠饰与金属器。
+\item 游牧金工、动物纹、皮革、毡房、鞍具、弓袋、箭囊、马饰；现代研究强调装饰与材料史。
+\item 书法、壁画、佛教造像、洞窟艺术与跨文化图像。
+\end{itemize}
+\end{multicols}
+
+\section{东南亚宫廷与岛屿工艺}
+
+
+\subsection{越南、柬埔寨、老挝、泰国、缅甸}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 越南螺钿、漆画、木雕、宫廷织物、陶瓷与金属器。
+\item 柬埔寨金银器、皇家丝绸、Ikats、石雕、吴哥建筑装饰、漆与木工。
+\item 泰丝、金线织物、Nielloware、银器、寺庙木雕、金箔、玻璃镶嵌、Benjarong 多彩瓷。
+\item 缅甸漆器、金箔、木雕、银器、Kammavaca 经书、Kalaga 刺绣挂毯。
+\item 老挝织锦、金银线、木雕、寺庙壁画与金属器。
+\end{itemize}
+\end{multicols}
+
+\subsection{印度尼西亚、马来世界与菲律宾}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Batik 蜡染、Ikat、Songket 金银线织物、Wayang 皮影、木偶、面具。
+\item Keris/Kris 历史刀剑艺术：Pamor 花纹、金银装具、木雕柄、鞘；仅作文化与装饰研究。
+\item Balinese 木雕、银工、金工、Temple textiles、Lontar 棕榈叶手稿。
+\item 马来 Songket、银器、木雕、漆与珍珠母；菲律宾金饰、贝饰、编织、Piña 纤维、珠母工艺。
+\end{itemize}
+\end{multicols}
+
+\section{非洲王室与高级工艺}
+
+
+\subsection{西非}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 贝宁王国：黄铜/青铜失蜡铸造浮雕、纪念头像、王室徽饰；历史象牙雕刻仅作保护研究。
+\item Akan/Asante：黄金饰物、金砝码、Kente、王室伞、凳、权杖、珠饰。
+\item Yoruba：冠、珠绣、木雕、铜合金铸造、仪式器物。
+\item Sahel：皮革、金银器、刺绣、木工、马具、手抄本与建筑泥塑装饰。
+\end{itemize}
+\end{multicols}
+
+\subsection{东非、埃塞俄比亚、北非撒哈拉以南接口}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 埃塞俄比亚十字架、金银器、宗教手抄本、皮革封面、教堂壁画。
+\item Swahili 海岸木门雕刻、象牙历史贸易档案、银器、珊瑚石建筑。
+\item Maasai 等珠饰体系；现代尊重社区知识产权与文化语境。
+\end{itemize}
+\end{multicols}
+
+\subsection{中部与南部非洲}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Kuba raffia 织物、刺绣、珠饰、木雕。
+\item Zulu 珠饰、Ndebele 几何珠饰与壁画、Shona 石雕。
+\item 木雕面具、仪式服饰、王权器物；避免把不同族群的视觉语言泛化为“非洲风”。
+\end{itemize}
+\end{multicols}
+
+\section{美洲高级造物：前哥伦布与原住民传统}
+
+
+\subsection{中美洲}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Maya：玉石、黑曜石、贝壳、羽毛、陶器、石雕、彩绘壁画、书写与折页手稿。
+\item Mexica/Aztec：绿松石镶嵌、黄金、羽毛艺术、石雕、仪式服饰。
+\item Mixtec：金工、绿松石马赛克、彩绘手稿、珠宝。
+\end{itemize}
+\end{multicols}
+
+\subsection{安第斯}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Moche、Sicán、Chimú、Inca 等：金银铜合金、锤揲、浮雕、羽毛、贝壳、织物。
+\item Andean textiles：细密织造、双层织、挂毯织、羽毛织物、王室头饰。
+\item Spondylus 贝壳、金属头饰、耳饰、胸饰、礼仪杯、陶器与石工。
+\end{itemize}
+\end{multicols}
+
+\subsection{北美原住民传统}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Navajo/Diné 织毯与银绿松石首饰；Pueblo 陶器、银工、镶嵌。
+\item Plains beadwork、quillwork 历史豪猪刺绣、皮革服饰；现代材料须尊重部落传统与合法来源。
+\item Northwest Coast 木雕、图腾柱、弯木盒、面具、Chilkat weaving。
+\item Haudenosaunee beadwork、桦树皮工艺、编篮、珠绣。
+\end{itemize}
+\end{multicols}
+
+\section{大洋洲与太平洋}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Māori 木雕、玉石 Pounamu、骨雕历史传统、编织、羽毛斗篷、独木舟装饰。
+\item Polynesian tapa 树皮布、羽饰、贝饰、木雕、纹身图样文化。
+\item Melanesian 面具、木雕、贝壳货币与仪式器物。
+\item Micronesian 航海图、编织、贝饰、独木舟；传统知识与社区授权应被视为 provenance 的一部分。
+\end{itemize}
+\end{multicols}
+
+\section{跨文明器物系统：人体、桌面、容器与空间}
+
+
+\subsection{人体上的微型建筑}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 戒指、胸针、项链、项圈、吊坠、耳饰、手镯、臂环、脚链、趾戒、腰链。
+\item 冠冕、Tiara、Diadem、Aigrette、簪钗、步摇、梳、头面、帽饰、羽饰。
+\item 腰佩：玉佩、香囊、荷包、印囊、扇坠、怀表链、Fob、Chatelaine、钥匙链、带钩、带板。
+\item 服装五金：纽扣、盘扣、袖扣、领针、领带夹、鞋扣、腰扣、包扣、暗扣、珐琅章。
+\end{itemize}
+\end{multicols}
+
+\subsection{盒、匣、柜：浓缩文明的容器}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 香盒、印盒、首饰盒、经盒、妆奁、镜箱、茶箱、香箱、药箱、琴盒、剑匣、表盒、卡盒。
+\item Snuffbox、Cigarette case、Vinaigrette、Pill box、Writing box、Pen box、Travel desk。
+\item Cabinet-on-stand、Kunstkammer cabinet、珍奇柜、机关柜、秘密抽屉、机械锁。
+\item 材料组合：木胎 + 漆 + 螺钿 + 金银 + 玉石 + 珐琅 + 宝石 + 锦缎内衬 + 铜活 + 机械。
+\end{itemize}
+\end{multicols}
+
+\subsection{高贵桌面器物}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Desk clock、Pen stand、Ink well、Seal、Letter opener、Paperweight、Magnifying glass、Desk bell。
+\item Bookend、Document case、Writing slope、Valet tray、Watch box、Jewellery box、Humidor、Tea caddy。
+\item Chess、Go、Backgammon、Mahjong、Playing-card case、Puzzle box、Mechanical puzzle。
+\end{itemize}
+\end{multicols}
+
+\subsection{饮食、茶、咖啡与酒器}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 中国茶器、紫砂、漆食器、攒盒、提盒、食盒、冰鉴。
+\item 日本茶道具、茶入、茶碗、茶筅、茶杓、漆器、菓子器。
+\item 欧洲银餐具、银茶具、瓷器、切割水晶、醒酒器、酒具。
+\item 阿拉伯咖啡 Dallah、Finjan、托盘、香炉；印度 Paan box、Rosewater sprinkler。
+\end{itemize}
+\end{multicols}
+
+\subsection{香、香水、化妆与私人物件}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 香炉、博山炉、熏球、手炉、香盒、香筒、香几。
+\item 香水瓶、水晶瓶、琉璃瓶、珐琅瓶、鼻烟壶、内画鼻烟壶、香膏盒、粉盒、镜盒。
+\item 梳、发刷、镜、化妆器、旅行盥洗套件、Manicure set、Toilette set。
+\end{itemize}
+\end{multicols}
+
+\section{墙面、壁画、彩窗与空间表皮}
+
+
+\subsection{壁画与绘画型墙面}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Buon fresco、Fresco secco、Tempera mural、Oil mural、矿物颜料壁画、金底壁画。
+\item Trompe-l'œil、Quadratura、Illusionistic ceiling、Grisaille、宫廷壁画、宗教壁画、民居彩绘。
+\end{itemize}
+\end{multicols}
+
+\subsection{镶嵌与立体墙面}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Mosaic、Glass mosaic、Gold mosaic、Opus sectile、Pietra dura mural、Mother-of-pearl mural。
+\item Zellige、Azulejo、Iznik tile、陶瓷壁画、琉璃砖、花砖。
+\item Stucco、Muqarnas、Scagliola、Sgraffito、Gesso relief、Pastiglia、Gilded stucco、木护墙 Boiserie。
+\end{itemize}
+\end{multicols}
+
+\subsection{彩窗与光}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Stained glass、Lead came、Grisaille glass、Painted glass、Silver stain、Flashed glass、Dalle de verre。
+\item Rose window、Lancet、Clerestory、Heraldic window、Tiffany-style leaded glass。
+\item 现代：二向色玻璃、光栅、投影映射、互动光墙、参数化穿孔金属、LED 与传统图案结合。
+\end{itemize}
+\end{multicols}
+
+\section{书籍、版画、卡牌与微型图像文明}
+
+
+\subsection{豪华书籍}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 泥金抄本、细密画、Illuminated manuscript、Book of Hours、Qur'an manuscript、波斯诗集、经卷。
+\item 皮革精装、Morocco leather、烫金、盲压、镶皮、拼皮、书口刷金、Gauffering、Fore-edge painting。
+\item 木匣、书盒、函套、螺钿书封、珠宝装帧、Treasure binding。
+\end{itemize}
+\end{multicols}
+
+\subsection{现代收藏卡牌}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Playing cards、Tarot、Oracle cards、TCG/CCG、Sports cards、Art cards、Commemorative cards、Membership cards。
+\item 纸基：Cotton paper、Linen finish、Black core、Handmade paper、Washi、Pearl paper、Metallic board、Wood veneer laminate。
+\item 印刷：Offset、Letterpress、Gravure、Intaglio、Screen、Lithography、UV、Microprinting。
+\item 表面：Hot foil、Cold foil、Gold/Silver/Rose-gold foil、Holographic、Diffraction、Spot UV、Raised UV、Emboss、Deboss、Laser cut。
+\item 光学：Lenticular、Prismatic foil、Optical-variable film、Thermochromic、Photochromic、Fluorescent、Phosphorescent、Interference pigments。
+\item 收藏级嵌件：金属牌、珐琅章、织物、刺绣、木皮、贝母、大漆、宝石小件；配合序列号、艺术家签名、NFC/数字证书进行 provenance。
+\end{itemize}
+\end{multicols}
+
+\begin{designbox}{卡牌的“传世化”公式}
+\centering
+$\text{插画/版画}+\text{触觉纸张}+\text{金属箔}+\text{浮雕}+\text{光学结构}+\text{手工嵌件}+\text{编号与来源}=\text{微型收藏艺术}$
+\end{designbox}
+
+\section{动态工艺：灯、风、火、水、声、影与机械}
+
+
+\subsection{灯彩与光影}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 宫灯、走马灯、鱼灯、龙灯、无骨灯、料丝灯、花灯、楼阁灯、机械灯彩。
+\item 摩洛哥穿孔金属灯、奥斯曼玻璃灯、欧洲枝形吊灯、Murano chandelier、Tiffany 灯、Art Deco 灯具。
+\item 皮影、剪影、花窗投影、镂空灯罩、彩窗光影、动态灯光装置。
+\end{itemize}
+\end{multicols}
+
+\subsection{风筝、伞、扇与风驱装置}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 中国风筝、风筝哨、龙串、沙燕；日本 Tako、东南亚风筝文化。
+\item 油纸伞、绢伞、罗伞、华盖、西式手工阳伞；伞骨、伞柄、银饰、刺绣与绘画。
+\item 折扇、团扇、羽扇、檀香扇、缂丝扇、蕾丝扇、珠母/骨替代扇骨、扇套与扇匣。
+\item Aeolian harp、风铃、檐铃、风铎等自然驱动声音器物。
+\end{itemize}
+\end{multicols}
+
+\subsection{烟火与瞬时艺术}
+
+
+\begin{legalbox}{安全边界}
+烟火、爆竹、火药表演属于受严格监管的危险品与公共活动。本数据库仅记录造型、历史、仪式、视觉与舞台设计，不包含配方、装药、起爆或制造操作。
+\end{legalbox}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 礼花、架子烟火、地景烟火、水上烟火、字幕/造型烟火、火龙、火树银花、铁花等。
+\item 冰雕、雪雕、沙雕、花艺、花车、曼陀罗沙画、灯会等共同构成“瞬时艺术”。
+\end{itemize}
+\end{multicols}
+
+\subsection{水力与机关}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 漏刻、水钟、水车、水轮、惊鹿、添水、流杯渠、喷泉机关、自动水戏。
+\item Automata、Singing bird box、机械写字人、音乐盒、Jaquemart、机械剧场、机关盒。
+\end{itemize}
+\end{multicols}
+
+\section{钟表、机械与科学仪器}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 怀表、腕表、座钟、旅行钟、长摆钟、骨架钟、天文钟、音乐钟。
+\item Tourbillon、Minute repeater、Grande/Petite sonnerie、Perpetual calendar、Equation of time、Automaton watch、Mystery clock。
+\item 玑镂表盘、珐琅表盘、微绘、金雕、宝石镶嵌、贝母、陨石、硬石表盘。
+\item 星盘 Astrolabe、浑仪、象限仪、六分仪、经纬仪、罗盘、日晷、Orrery、天球仪、地球仪。
+\item 显微镜、望远镜、航海钟、机械计算器、地图、船模、科学模型；科学精密性本身就是奢侈价值。
+\end{itemize}
+\end{multicols}
+
+\section{刀剑、甲胄、马具与历史武备艺术}
+
+
+\begin{legalbox}{定位}
+本章关注历史器物的材料、装饰、工艺史、礼仪与收藏，不提供武器制造或伤害性使用方法。现代复原、购买、携带、邮寄和展示需遵守所在地法律。
+\end{legalbox}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 中国汉剑、唐刀、龙泉剑、苗刀、清刀等历史体系；日本太刀、打刀、胁差、短刀；欧洲骑士剑、军刀；印度与伊斯兰刀剑。
+\item 装具：剑格、剑首、剑璏、剑珌、镡、缘头、目贯、小柄、笄、护手、柄卷、鞘口、挂环。
+\item 装饰：金银错、鎏金、錾刻、珐琅、烧蓝、花丝、玉雕、螺钿、莳绘、金箔、戗金、宝石镶嵌。
+\item 甲胄：札甲、鱼鳞甲、锁子甲、板甲、头盔、盾、马铠；表面蚀刻、鎏金、蓝钢、錾花。
+\item 马具：鞍、辔、马镫、胸带、缰、马毯、银饰与刺绣；欧洲、阿拉伯、印度、草原文明皆有独立高级传统。
+\end{itemize}
+\end{multicols}
+
+\section{乐器与声音器物}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 中国古琴、古筝、琵琶、笙、箫、编钟；日本筝、尺八、三味线；印度西塔琴、萨罗德、塔布拉。
+\item 欧洲小提琴、大提琴、鲁特琴、吉他、竖琴、钢琴、管风琴；名琴制琴木材、虫胶、镶线、雕刻。
+\item 伊斯兰 Oud、Qanun、Ney；中亚 Dutar、Rubab；非洲 Kora、Mbira、鼓。
+\item 音乐盒、自动演奏乐器、机械风琴、钟琴、风铃、梵钟、风铎。
+\end{itemize}
+\end{multicols}
+
+\section{服饰高定、鞋履、皮具与人体设计}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Haute couture、Bespoke tailoring、宫廷服、礼服、戏服、宗教服饰。
+\item Goldwork、珠绣、亮片、羽饰、蕾丝、盘金、盘扣、Soutache、Passementerie、手工花。
+\item 绣花鞋、云头履、朝靴、木屐、草履；Bespoke shoes、Goodyear welt、Norvegese、手工鞋楦。
+\item 手工皮具、马具、旅行箱、书套、钱包、卡包、手套、腰带；压花、雕花、烫金、镶嵌、手缝。
+\item 帽饰、Fascinator、冠冕、羽饰、面具、戏曲头面、威尼斯面具、能面、傩面。
+\end{itemize}
+\end{multicols}
+
+\section{珍稀园艺、古树与活体艺术}
+
+
+\subsection{东方体系}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 罗汉松、黑松、赤松、五针松、真柏、黄杨、榔榆、榉、银杏、古梅、紫薇、枫、山茶、桂花、杜鹃、紫藤。
+\item Bonsai 盆栽、Niwaki 庭木、古桩、盆石、水石、苔景；评价根盘、干姿、枝序、叶性、树龄、来源和长期养护。
+\end{itemize}
+\end{multicols}
+
+\subsection{欧洲与地中海}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Yew 紫杉、Boxwood 黄杨、Ancient olive 古橄榄、Cedar 雪松、Oak 栎、Linden 椴、Beech 山毛榉、Plane 悬铃木、Chestnut 栗。
+\item Topiary 植物雕塑、Pleaching 空中树篱、Espalier 二维果树、Parterre 几何花坛、Maze 植物迷宫。
+\item Italian cypress、古葡萄藤、古无花果、柑橘 Orangery、古玫瑰、山茶、紫藤拱廊。
+\end{itemize}
+\end{multicols}
+
+\subsection{收藏花卉与历史栽培品种}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item Historic/Old Garden Roses：Gallica、Damask、Alba、Centifolia、Moss、Bourbon、Noisette、Tea、China rose、Hybrid perpetual。
+\item Orchids：Paphiopedilum、Cattleya、Vanda、Dendrobium、Cymbidium、Phalaenopsis、Angraecum 等；以合法人工繁殖为前提。
+\item Tulip、Narcissus、水仙、Hyacinth、Lily、Fritillaria、Snowdrop 等球根收藏。
+\item Auricula、Dianthus/Carnation、Pelargonium 等历史园艺 cultivar；可记录母株、育种谱系、栽培年代和园艺档案。
+\end{itemize}
+\end{multicols}
+
+\begin{designbox}{活体传世器}
+一株历史 cultivar 的后代，可能通过扦插、嫁接或分株把同一遗传谱系延续数百年。器物传承的是物质；园艺传承的是\textbf{生命信息 + 长期养成 + 园林语境}。
+\end{designbox}
+
+\section{园林、建筑与“活体建筑”}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 中式江南园林、皇家园林、寺庙园林、书院园林；日本枯山水、茶庭、苔庭。
+\item 法式几何园林、英式风景园、意大利台地园、伊斯兰 Chahar bagh、水景庭院、摩尔式庭院。
+\item 假山、叠石、瀑布、溪、池、泉、喷泉、锦鲤池、汀步、曲桥、廊桥、凉亭、迷宫、藤架。
+\item 活体建筑：Pleached avenue、Espalier wall、Wisteria canopy、葡萄架、树篱墙、Topiary room。
+\item 建筑语言：中国斗拱与藻井；希腊柱式、罗马拱券；哥特飞扶壁与玫瑰窗；伊斯兰穹顶、Muqarnas、Mashrabiya；印度 Jali 与 Chhatri；欧洲宫殿、城堡、庄园。
+\end{itemize}
+\end{multicols}
+
+\section{游戏、玩具、棋具与微缩世界}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 围棋、象棋、国际象棋、Shogi、Backgammon、Mahjong、Pachisi、骨牌、纸牌。
+\item 九连环、鲁班锁、孔明锁、华容道、七巧板、陀螺、空竹、不倒翁、万花筒、机械玩具。
+\item 高端棋具材料：黑檀、黄杨、瘿木、银丝、螺钿、玉、玛瑙、水晶、珐琅、金银。
+\item 微缩园林、建筑模型、船模、娃娃屋、微缩家具、微缩书籍、微缩机械、Diorama。
+\item “把文明压进一个盒子”：微缩世界特别适合成为现代传世器、博物馆衍生品和限量收藏。
+\end{itemize}
+\end{multicols}
+
+\section{古典交通、旅行与移动空间}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 马车、轿、Palanquin、Howdah、雪橇、龙舟、画舫、Gondola、Dhow、帆船、古典游艇。
+\item 车厢木作、漆、皮革、织物、鎏金金属、玻璃、徽章、行李箱、旅行写字箱。
+\item 船模与建筑模型：细木工、黄铜、绳结、帆布、微缩航海仪器、雕刻。
+\item 现代延伸：豪华汽车内饰、游艇、私人飞机、头等舱空间，以木皮、皮革、金属、石材、纺织、灯光和数字界面构成“移动建筑”。
+\end{itemize}
+\end{multicols}
+
+\section{现代高级造物与传统工艺的再编码}
+
+
+\subsection{现代载体}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 手机、手机壳、耳机盒、充电座、键盘、鼠标、游戏机、VR/AR 设备。
+\item 腕表、表带、钢笔、眼镜、打火机、香水瓶、化妆品包装。
+\item 包袋、钱包、卡包、行李箱、珠宝盒、礼品盒、酒茶包装、雪茄盒。
+\item 汽车、游艇、私人飞机内饰；音响、家电、灯具、家具、门把手、墙面。
+\end{itemize}
+\end{multicols}
+
+\subsection{数字制造与传统工艺协同}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item CNC 粗加工 + 手工精修；激光切割 + 手工镶嵌；3D 打印失蜡铸造 + 金工修整。
+\item 参数化设计生成花纹，再由漆、珐琅、石材、木作、金属完成。
+\item 机器视觉辅助质检，但保留手工不可重复性；数字档案记录工艺流程和修复史。
+\item NFC、二维码、数字证书用于 provenance，不把“数字藏品”本身误作实体工艺价值的替代。
+\end{itemize}
+\end{multicols}
+
+\subsection{十二条现代传世器设计原则}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 先确定文化语法，再选择材料；不要先堆贵材料。
+\item 至少保留一个能够被肉眼识别的手工痕迹。
+\item 让材料自然纹理参与设计，而不是全部覆盖。
+\item 结构必须可维修、可拆换、可保养。
+\item 高接触部位优先考虑耐磨、耐汗、耐 UV 与皮肤安全。
+\item 贵金属和宝石应有明确的可回收与再利用路径。
+\item 避免使用无法证明来源的野生动植物材料。
+\item 把包装、盒、证书、说明书也设计成作品的一部分。
+\item 建立作者、工坊、材料批次、制作日期、修复记录。
+\item 限量不等于价值；稀缺必须来自真实工时、材料或设计。
+\item 传统纹样避免无语境拼贴，应理解其礼制、宗教与地域含义。
+\item 设计目标不是“复古”，而是让传统工艺进入当代生活。
+\end{itemize}
+\end{multicols}
+
+\section{现代豪华内饰：汽车、游艇与航空}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 木皮：胡桃、枫瘿、桉木瘿、黑檀视觉材料、开孔木、钢琴漆、染色木皮。
+\item 金属：拉丝铝、钛、PVD、精密滚花、玑镂、蚀刻、珐琅徽章。
+\item 皮革与织物：植鞣皮、细纹皮、羊毛、羊绒、丝、Alcantara 类微纤维、刺绣、绗缝。
+\item 石与复合：超薄石材、陶瓷、玻璃、碳纤维、锻造碳、可持续复合材料。
+\item 灯光：隐藏式氛围光、星空顶、光纤织物、背光石材、微孔金属发光。
+\item 真正高级的内饰应强调触感、声学、气味、耐久、维修与材料老化后的美感。
+\end{itemize}
+\end{multicols}
+
+\section{法律、伦理、来源与文化财产}
+
+
+\subsection{野生动植物与 CITES}
+
+
+\begin{legalbox}{基本原则}
+CITES 的附录、各国野生动物法、海关规则和地方实施经常变化。数据库应保存“物种学名、来源、繁殖方式、产地、证件、交易区域”而不是只写一个俗名。象牙、犀角等高风险材料应默认进入\textbf{历史保护档案}，现代设计使用合法替代。兰花、沉香、红木、珊瑚、爬行动物皮革等也可能因具体物种与来源而受监管。
+\end{legalbox}
+
+\subsection{文物、考古与 provenance}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 古物应记录合法出口、拍卖/收藏历史、修复史和所有权链；“老东西”不自动等于合法。
+\item 从考古遗址、宗教场所、墓葬来源不明的物品具有高伦理与法律风险。
+\item 文化财产归还、殖民时期掠夺与战争流散问题应在数据库中设置“来源争议”字段，不以市场价格替代伦理判断。
+\end{itemize}
+\end{multicols}
+
+\subsection{危险品与受控器物}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 烟火、火药、爆竹：记录文化、审美、表演史；生产、储运和燃放遵守专业许可。
+\item 刀剑与武具：重点记录装饰、历史和工艺；购买、携带、邮寄、开刃等按所在地法律。
+\item 食品接触珐琅、陶瓷釉、金属器应关注铅、镉、镍迁移等安全规范。
+\item 儿童用品、穿戴品、皮肤接触品应采用相应的材料安全和机械安全标准。
+\end{itemize}
+\end{multicols}
+
+
+\section{宗教、仪式与神圣造物}
+宗教艺术往往把一个文明最昂贵的材料、最复杂的工艺和最严格的礼制集中在同一件对象上。数据库记录其工艺与文化语境，不把神圣器物降格为“装饰风格素材库”。
+\subsection{基督宗教}
+\begin{multicols}{2}\begin{itemize}
+\item Chalice、Ciborium、Paten、Monstrance、Reliquary、Processional cross、Altar cross、Censer、Incense boat。
+\item Triptych、Diptych、Icon、Oklad、Tabernacle、Gospel cover、Rosary、Bishop's ring、Crozier。
+\item 金银器、珐琅、宝石、珍珠、彩窗、金底马赛克、象牙历史材料、木雕多彩圣像。
+\item 教堂织物：祭衣、金线刺绣、蕾丝、挂毯、祭坛布、旗帜。
+\end{itemize}\end{multicols}
+\subsection{犹太仪式艺术}
+\begin{multicols}{2}\begin{itemize}
+\item Torah crown、Torah shield、Yad 读经指针、Rimonim、Torah case、银质经卷饰件。
+\item Kiddush cup、Hanukkah lamp/Menorah、Havdalah spice box、Seder plate、Mezuzah case。
+\item 银器錾刻、Filigree、珐琅、木雕、刺绣、书法与皮革装帧。
+\end{itemize}\end{multicols}
+\subsection{佛教、印度教、耆那教、锡克教与东亚宗教}
+\begin{multicols}{2}\begin{itemize}
+\item 佛教：造像、唐卡、Mandala、经卷、经盒、转经筒、法器、供灯、铜鎏金、木雕、漆金、刺绣。
+\item 尼泊尔/Newar：Paubha、鎏金铜造像、Repoussé、宝石镶嵌、建筑木雕。
+\item 印度教：Bronze icon、Temple jewellery、Ritual lamp、银器、金属神龛、石雕、木雕、织物与花环艺术。
+\item Jain：手抄本、细密画、银器、石雕与寺庙建筑装饰。
+\item Sikh：经书装帧、Rumala 织绣、金银器、武具礼仪装饰历史研究。
+\item 神道与日本佛教：漆器、金工、织物、神轿 Mikoshi、祭具、寺社建筑彩绘与金箔。
+\end{itemize}\end{multicols}
+
+\section{珍贵色彩、颜料与表面光泽}
+\subsection{“颜色本身就是财富”}
+\begin{multicols}{2}\begin{itemize}
+\item 天然群青：历史上由青金石制取，是欧洲中世纪与文艺复兴最昂贵的蓝色之一。
+\item 石青、石绿、孔雀石绿、朱砂、赭石、云母、金泥、银泥。
+\item 胭脂虫红、茜草红、红花、紫草、靛蓝、苏木、栀子、五倍子。
+\item Tyrian purple/皇家紫：历史骨螺染色体系，现代主要作为色彩史与文化语汇研究。
+\item Shell gold、Powdered gold、Metal leaf、Gold ground、Silverpoint 与金属粉绘画。
+\item 现代：干涉颜料、珠光颜料、金属颜料、光变油墨、温变/光致变色、结构色。
+\end{itemize}\end{multicols}
+\subsection{光泽作为工艺}
+\begin{itemize}
+\item 镜面抛光、磨砂、锤纹、Hairline、Engine turning、Guilloché、黑化、Patina、Raku 与窑变表面。
+\item 漆器的深层光、金属的镜面与拉丝、宝石的切工火彩、珍珠与贝母的干涉色，都是“光的材料设计”。
+\end{itemize}
+
+\section{自然史、化石、陨石与珍奇柜}
+\subsection{时间材料}
+\begin{multicols}{2}\begin{itemize}
+\item 琥珀、蜜蜡、血珀、蓝珀、虫珀；柯巴树脂应与真正地质年代琥珀区分。
+\item 铁陨石、石陨石、石铁陨石、橄榄陨铁、月球/火星陨石等收藏类别；强调来源记录和合法出口。
+\item 菊石、三叶虫、木化石、海百合、植物化石等合法来源化石；考古与古生物化石法规因地区而异。
+\item 自然金、自然银、晶簇、萤石、辉锑矿、电气石、方解石、孔雀石、蓝铜矿等矿物标本。
+\item 珊瑚、贝壳、珍珠母、海洋天然物应按物种和来源核查，避免非法采集。
+\end{itemize}\end{multicols}
+\subsection{Cabinet of Curiosities｜珍奇柜}
+\begin{itemize}
+\item Renaissance/Baroque Kunstkammer 将自然标本、硬石、贝壳、科学仪器、机械、微雕、异域物件共同陈列。
+\item 当代可以转译为“材料图书馆”：每件标本附来源、物种/矿物学名、产地、年代、工艺与合法证明。
+\end{itemize}
+
+\section{历史火器、狩猎与礼仪装备的装饰艺术}
+\begin{legalbox}{定位}
+本章只记录历史器物的外观、装饰、收藏与工艺史，不提供枪械制造、改装、弹药、性能提升或使用指导。现代拥有、运输、展示和交易应遵守当地法律。
+\end{legalbox}
+\begin{multicols}{2}\begin{itemize}
+\item 欧洲历史火器装饰：金银嵌、錾刻、蚀刻纹样、木托雕刻、骨/角历史镶嵌、珍珠母、鎏金、蓝钢表面。
+\item Wheel-lock、Flintlock 等历史器型可作为机械史和宫廷装饰艺术研究对象。
+\item 猎具与礼仪：Powder flask、Hunting horn、Game bag、Knife sheath、Gun case、Shooting accessories 的皮革与银饰。
+\item 伊斯兰、印度与奥斯曼地区亦有高度装饰化的历史火器、刀剑与马具，常结合 Koftgari、玉石、象牙历史材料与宝石。
+\item 当代安全转译：把錾刻、滚花、木雕、银丝镶嵌等视觉语言移植到钢笔、工具、表壳、盒具、门把手、汽车内饰，而非复制武器功能。
+\end{itemize}\end{multicols}
+
+\section{风格运动与设计语言索引}
+\subsection{欧洲与全球近现代风格}
+\begin{multicols}{2}\begin{itemize}
+\item Gothic / Gothic Revival：尖拱、垂直性、彩窗、叶饰、石雕、金属细部。
+\item Renaissance：古典秩序、Grotesque、硬石、金工、透视、宫廷收藏。
+\item Baroque：强烈动势、曲线、金饰、戏剧光线、巨型壁画与综合空间。
+\item Rococo：不对称卷草、贝壳纹、Pastel、Ormolu、细木镶嵌、瓷器与私密空间。
+\item Neoclassicism / Empire：古希腊罗马语汇、对称、月桂、鹰、棕榈、黑金与硬石。
+\item Arts \& Crafts：材料诚实、手工、结构清晰、反工业粗制逻辑。
+\item Art Nouveau / Jugendstil：植物曲线、昆虫、珐琅、玻璃、弯木、综合艺术。
+\item Vienna Secession / Wiener Werkstätte：几何、金属、家具、平面与建筑统一设计。
+\item Art Deco：几何、阶梯、太阳放射、漆、鲨鱼皮历史材料、珍贵木皮、铬与黑金对比。
+\item Bauhaus / Modernism：结构、功能、工业材料；高级版本强调比例、精密制造和材料触感。
+\item Streamline Moderne：流线、金属、漆面、交通工具美学。
+\item Contemporary Craft：传统手工与 CNC、3D 打印、参数化、智能材料、数字 provenance 的混合。
+\end{itemize}\end{multicols}
+\subsection{跨文明设计语法}
+\begin{itemize}
+\item \textbf{几何}：伊斯兰 Girih、Zellige、Khatam、Art Deco、罗马马赛克、现代参数化。
+\item \textbf{植物}：中国缠枝、日本琳派、波斯花卉、奥斯曼郁金香、欧洲 Acanthus、Art Nouveau。
+\item \textbf{文字}：中国书法、阿拉伯书法、拉丁手抄本首字母、铭文珠宝、现代微缩文字。
+\item \textbf{光}：金底马赛克、彩窗、贝母、珐琅、珠宝火彩、结构色、全息。
+\item \textbf{时间}：包浆、漆层、树龄、古藤、石材风化、金属 Patina、手工修复痕迹。
+\end{itemize}
+
+\section{数据库结构：把文明做成可检索系统}
+
+
+\subsection{建议的数据字段}
+
+
+
+\begin{longtable}{>{\bfseries}p{0.19\textwidth}p{0.72\textwidth}}
+\toprule
+字段 & 内容\\
+\midrule
+对象 ID & 唯一编号；建议 Civilization-Domain-Object-Sequence。\\
+文明/地域 & 中国、日本、印度、波斯、奥斯曼、欧洲、非洲、美洲等，可多值。\\
+时代 & 古代/中世纪/近世/现代以及具体世纪、王朝、风格期。\\
+对象类型 & 珠宝、家具、书籍、墙面、园林、机械、卡牌、服饰、器皿等。\\
+材料 & 主材、辅材、结构材、表面材、合法替代材。\\
+工艺 & 主工艺、辅助工艺、工具、火候/工序层级，仅记录安全适宜的信息。\\
+视觉语言 & 几何、植物、动物、书法、叙事、纹章、宗教、抽象等。\\
+用途 & 日常、礼仪、宗教、宫廷、收藏、纪念、展示、节庆。\\
+稀缺性来源 & 材料、工时、自然纹理、树龄、知识、工坊、年代、唯一性。\\
+Provenance & 作者/工坊、材料来源、制作地、收藏史、证书、修复史。\\
+法律标签 & 可自由使用 / 需证明来源 / 受监管 / 历史保护档案 / 危险品。\\
+现代转译 & 首饰、3C、家居、汽车、卡牌、建筑、公共艺术等。\\
+维护 & 清洁、湿度、温度、紫外线、碰撞、氧化、虫害、活体养护。\\
+参考资料 & 博物馆、学术论文、工坊档案、行业标准。\\
+\bottomrule
+\end{longtable}
+
+\subsection{建议标签体系}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 	agM：现代可转译，材料与工艺原则上可合法进入当代产品。
+\item 	agL：活体传世，树木、盆景、历史栽培品种、长期园艺结构。
+\item 	agR：受监管，需按物种、地区、用途和贸易方式核查。
+\item 	agP：历史保护，仅用于研究、博物馆、合法古董与替代材料教育。
+\end{itemize}
+\end{multicols}
+
+\subsection{四个样例条目}
+
+
+\begin{catalogbox}{EU-JEW-BROOCH-001｜En tremblant 胸针}
+文明：欧洲；对象：胸针；核心：黄金/铂金、钻石、彩宝、弹簧结构；工艺：金工、微镶、微型机械；稀缺性：结构设计 + 高密度手工；现代转译：胸针、表盘活动装置、包扣；标签：\tagM。
+\end{catalogbox}
+
+\begin{catalogbox}{CN-LIV-TREE-001｜古桩罗汉松}
+文明：东亚；对象：活体庭木；核心：树龄、根盘、干姿、枝序、长期剪定；稀缺性：时间不可压缩；现代转译：庭院、酒店、会所、博物馆庭园；标签：\tagL。
+\end{catalogbox}
+
+\begin{catalogbox}{HIS-BIO-IVORY-001｜历史象牙雕刻}
+文明：跨文明；对象：历史生物材料工艺；核心：雕刻、微雕、浮雕；现代定位：博物馆与工艺史研究；现代替代：Tagua、骨、陶瓷、树脂复合；标签：\tagP。
+\end{catalogbox}
+
+\begin{catalogbox}{MOD-CARD-ART-001｜收藏级卡牌}
+文明：现代全球；对象：卡牌；核心：棉纸/黑芯纸、凹凸压印、金属箔、全息、Raised UV、手工嵌件；稀缺性：插画 + 印刷 + 工艺 + 编号 provenance；标签：\tagM。
+\end{catalogbox}
+
+\section{待继续扩展的研究轴}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item 拜占庭、亚美尼亚、格鲁吉亚、科普特、埃塞俄比亚宗教艺术的进一步细分。
+\item 萨珊、阿契美尼德、帕提亚、粟特、贵霜与中亚游牧金工的深层谱系。
+\item 东南亚各宫廷：暹罗、缅甸、占婆、爪哇、巴厘、马来苏丹国的独立工艺树。
+\item 非洲各王国和族群应继续按具体文化拆分，而不是使用泛化标签。
+\item 前哥伦布美洲各区域的金工、羽毛、纺织、石材和书写系统可形成独立卷。
+\item 欧洲 Art Nouveau、Art Deco、Arts \& Crafts、Bauhaus、Vienna Secession、Russian Revival 等现代早期风格可继续做风格层。
+\item 现代数字制造、可持续材料、实验室宝石、结构色、智能材料与传统工艺的接口。
+\end{itemize}
+\end{multicols}
+
+\section{参考机构与核验入口}
+
+
+
+本数据库是“母目录”，不是单一地区的工艺教材。深入研究具体条目时，优先查阅博物馆馆藏记录、物种保护数据库、学术论文和工坊档案。以下机构是本版结构核验的重要入口：
+\begin{itemize}
+\item Victoria and Albert Museum (V\&A)：珠宝、珐琅、欧洲装饰艺术、南亚工艺、纺织、书籍与设计。\\
+\url{https://www.vam.ac.uk/collections}
+\item The Metropolitan Museum of Art：希腊罗马、拜占庭、伊斯兰艺术、欧洲装饰艺术、非洲、美洲与亚洲艺术。\\
+\url{https://www.metmuseum.org/art/collection}
+\item British Museum：古埃及、古代地中海、非洲、亚洲、美洲与世界物质文化。\\
+\url{https://www.britishmuseum.org/collection}
+\item CITES：受保护动植物国际贸易附录和物种核验。\\
+\url{https://cites.org/} \quad \url{https://checklist.cites.org/}
+\item Royal Horticultural Society (RHS) 与主要植物园：历史园艺、Topiary、Yew、栽培品种与园艺实践。\\
+\url{https://www.rhs.org.uk/}
+\item Royal Botanic Gardens, Kew：植物分类、兰花、珍稀植物与全球植物数据库。\\
+\url{https://www.kew.org/}
+\end{itemize}
+
+\section{结语：从“奢侈品”到“文明接口”}
+
+
+
+真正值得复兴的并不是“古代人曾经用过什么昂贵材料”，而是他们怎样把\textbf{材料、时间、数学、结构、手感、光、声、气味、园林、礼仪和叙事}压缩进一件对象。
+
+因此，“人类高级造物文明数据库”最终不是一份购物清单，也不是古董目录，而是一张可不断扩展的技术与审美网络：
+
+\begin{manifesto}[总公式]
+\centering
+\Large
+$\boxed{\text{材料}\rightarrow\text{工艺}\rightarrow\text{器物}\rightarrow\text{空间}\rightarrow\text{仪式}\rightarrow\text{生活方式}\rightarrow\text{文明}}$
+\end{manifesto}
+
+当代设计真正有价值的工作，是从这张网络里抽取原则，并用今天合法、安全、可维护的材料重新实现。目标不是做一件“看起来像古董”的商品，而是创造一件百年后仍然值得被打开、佩戴、修复、种植、演奏或传给下一代的东西。
+
+
+\section*{版本说明}
+\addcontentsline{toc}{chapter}{版本说明}
+本版为 1.0 母文档：优先建立覆盖范围、分类学和交叉索引逻辑。后续可在 GitHub 中拆分为 \texttt{materials/}、\texttt{crafts/}、\texttt{civilizations/}、\texttt{objects/}、\texttt{living/}、\texttt{legal/} 等模块，并由脚本自动生成本 LaTeX 总卷。
+
+\vfill
+\begin{center}
+\sffamily\color{Slate}
+The database is designed to grow.\\
+珍贵不是价格标签，而是时间、知识、来源与设计的密度。
+\end{center}
+
+
+\printbibliography[heading=bibintoc, title=Bibliography]
+\end{document}
