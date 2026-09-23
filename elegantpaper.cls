@@ -109,13 +109,9 @@
 
 \ifXeTeX
   \RequirePackage[no-math]{fontspec}
-  % Prefer the template's TeX Gyre fonts, but fall back automatically.
-  \IfFontExistsTF{texgyretermes-regular}{
-    \setmainfont{texgyretermes}[UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic,Extension=.otf,Scale=1.0]
-  }{\setmainfont{DejaVu Serif}}
-  \IfFontExistsTF{texgyreheros-regular}{
-    \setsansfont{texgyreheros}[UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic,Extension=.otf,Scale=0.9]
-  }{\setsansfont{DejaVu Sans}}
+  % Use broadly available fonts; projects may override these in the preamble.
+  \setmainfont{DejaVu Serif}
+  \setsansfont{DejaVu Sans}
 \else
   \RequirePackage{newtxtext}
   \RequirePackage[scaled=.90]{helvet}
