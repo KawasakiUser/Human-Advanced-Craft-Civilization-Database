@@ -180,10 +180,7 @@
 }{\relax}
 
 
-\RequirePackage[
-  backend=\ELEGANT@bibend,
-  citestyle=\ELEGANT@citestyle,
-  bibstyle=\ELEGANT@bibstyle]{biblatex}
+% Load biblatex from main.tex only when citations are actually used.
 
 \RequirePackage{appendix}
 
